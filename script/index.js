@@ -6,7 +6,7 @@ function goToRemainSubject() {
   for (let i = 1; i < subject.length; i++) {
     const targetTd = subject[i].getElementsByTagName('td')[1].getElementsByTagName('span')[1];
     // 마감을 앞두고 있는 강의 확인, 클릭
-    if (targetTd.textContent.match(/마감입니다/g)) {
+    if (targetTd.textContent.match(/(1일|\d시간) 후 마감입니다/g)) {
       targetTd.click();
       break;
     }
