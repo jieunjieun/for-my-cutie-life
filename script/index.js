@@ -28,12 +28,11 @@ function openClass() {
     // 현재 날짜가 강의 수강 가능 기간 안에 있는지 확인
     if (new Date(classStartDate) <= currentDate && currentDate < new Date(classEndDate)) {
       const progressStatusLabel = weeklyClassInfos.getElementsByTagName('font')[1].textContent
-      if (!progressStatusLabel) return;
+      if (!progressStatusLabel) continue;
 
-      const [progressPercentage, progressPercentageNumber] = progressStatusLabel.match(/(\d)%/);
-
+      const [progressPercentage] = progressStatusLabel.match(/([+-]?([0-9]*[.])?[0-9]+)%/);
       // 강의 수강률이 100%가 아닌 강의 찾고 클릭
-      if (Number(progressPercentageNumber) !== 100) {
+      if (progressPercentage !== '100%') {
         weeklyClassTR.children[1].getElementsByTagName('button')[0].click()
         break;
       }
